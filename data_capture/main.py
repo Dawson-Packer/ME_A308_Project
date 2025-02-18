@@ -1,3 +1,4 @@
+from datetime import timedelta
 import os
 import signal
 import sys
@@ -13,6 +14,8 @@ pressure_file = None
 float_file = None
 
 start_time = 0
+
+ser: Serial | None = None
 
 ultrasonic_data = []
 pressure_data = []
@@ -52,8 +55,25 @@ def main():
 
     while True:
         result = bytes.decode(ser.readall())
-        # TODO: Read data from result string, store in arrays with current elapsed time
 
+        ultrasonic_reading = {
+            'time': time.time() - start_time,
+            'data': float(result.split('US: ')[1].split('P: ')[0]),
+        }
+
+        pressure_reading = {
+            'time': time.time() - start_time,
+            'data': float(result.split('P: ')[1].split('F: ')[0]),
+        }
+
+        float_reading = {
+            'time': time.time() - start_time,
+            'data': float(result.split('F: ')[1]),
+        }
+
+        ultrasonic_data.append(ultrasonic_reading)
+        pressure_data.append(pressure_reading)
+        float_data.append(float_reading)
 
 
 def stop_collecting_data():
@@ -69,6 +89,9 @@ def stop_collecting_data():
     ultrasonic_file.close()
     pressure_file.close()
     float_file.close()
+
+    if ser:
+        ser.close()
 
 if __name__ == '__main__':
 

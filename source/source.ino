@@ -5,6 +5,7 @@
 void setup() {
 
     pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, 1);
     Serial.begin(9600);
 
     initializeUltrasonic();
@@ -13,7 +14,9 @@ void setup() {
 
 void loop() {
 
-    float distance = getUltrasonicOutput();
+    
+
+    long distance = getUltrasonicOutput();
     Serial.println(distance);
 
 }
