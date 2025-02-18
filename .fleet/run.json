@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Build Sketch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/build.ps1"]
+            
+        },
+        {
+            "type": "command",
+            "name": "Upload Sketch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/upload.ps1"]
+
+        },
+        {
+            "type": "command",
+            "name": "Build & Upload Sketch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/run_all.ps1"]
+        }
+    ]
+}

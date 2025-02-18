@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Ethernet\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Firmata",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Keyboard\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\LiquidCrystal\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Mouse\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\SD\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Servo\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\Stepper\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\libraries\\TFT\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\EEPROM\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\HID\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\SoftwareSerial\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\SPI\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src",
+                "C:\\Users\\Dawson\\AppData\\Local\\arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\standard",
+                "D:\\Developer\\tools\\avr8-gnu-toolchain-win32_x86_64\\avr\\include",
+                "${workspaceFolder}/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "UBRRH"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+        }
+    ],
+    "version": 4
+}

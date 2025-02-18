@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build Sketch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/build.ps1"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole"
+        },
+        {
+            "name": "Upload Sketch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/upload.ps1"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole"
+        },
+        {
+            "name": "Build & Upload Sketch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell.exe",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "./scripts/run_all.ps1"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole"
+        }
+    ]
+}
