@@ -8,6 +8,6 @@
 
 void initializeUltrasonic();
 
-long getUltrasonicOutput();
+float getUltrasonicOutput();
 
 #endif

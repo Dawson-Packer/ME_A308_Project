@@ -7,7 +7,7 @@ void initializeUltrasonic() {
 
 }
 
-long getUltrasonicOutput() {
+float getUltrasonicOutput() {
 
     long duration;
 
@@ -19,6 +19,6 @@ long getUltrasonicOutput() {
 
     duration = pulseIn(ECHO_PIN, 1);
     
-    return duration / 29 / 2; /* Convert to centimeters */
+    return (static_cast<float>(duration) / 0.0033) / 2; /* Convert to meters */
 
 }

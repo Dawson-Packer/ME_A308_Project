@@ -2,8 +2,6 @@
 #include <HardwareSerial.h>
 #include "ultrasonic.h"
 
-static int count = 0;
-
 void setup() {
 
     pinMode(LED_BUILTIN, OUTPUT);
@@ -15,7 +13,7 @@ void setup() {
 
 void loop() {
 
-    long distance = getUltrasonicOutput();
+    float distance = getUltrasonicOutput();
     Serial.println(distance);
 
 }
