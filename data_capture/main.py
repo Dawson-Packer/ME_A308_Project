@@ -1,7 +1,5 @@
-from datetime import timedelta
 import os
 import signal
-import sys
 import time
 
 from serial import Serial, SerialException

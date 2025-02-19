@@ -19,7 +19,6 @@ long getUltrasonicOutput() {
 
     duration = pulseIn(ECHO_PIN, 1);
     
-    // return (static_cast<float>(duration) / 0.0033) / 2; /* Convert to meters */
     return duration / 29 / 2;
 
 }
