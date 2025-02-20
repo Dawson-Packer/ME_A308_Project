@@ -1,6 +1,8 @@
 #include <arduino.h>
 #include <HardwareSerial.h>
 #include "ultrasonic.h"
+#include "pressure.h"
+#include "float.h"
 
 void setup() {
 
@@ -18,16 +20,20 @@ void setup() {
 
 void loop() {
 
-    long us_distance = getUltrasonicOutput();
+    long ultrasonic_microseconds = getUltrasonicOutput();
+
+    float pressure_voltage = voltageOutPressureSensor();
+
+    float float_voltage = voltageOutFloatSensor();
     
     Serial.print("US: ");
-    Serial.print(us_distance);
+    Serial.print(ultrasonic_microseconds);
 
-    Serial.print("P: ");
-    // TODO: get pressure reading
+    Serial.print(" P: ");
+    Serial.print(pressure_voltage);
 
-    Serial.print("F: ");
-    // TODO: get float reading
+    Serial.print(" F: ");
+    Serial.print(float_voltage);
 
     Serial.print('\n');
 

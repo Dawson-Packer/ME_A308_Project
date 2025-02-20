@@ -1,15 +1,14 @@
 import os
-import signal
 import time
 
-from serial import Serial, SerialException
+from serial import Serial
 from serial.tools import list_ports
 
-os.chdir(os.path.join(__file__))
+os.chdir(os.path.dirname(__file__))
 
-ultrasonic_file = None
-pressure_file = None
-float_file = None
+ultrasonic_file = open(os.path.join('.', 'ultrasonic_data.csv'), 'w')
+pressure_file = open(os.path.join('.', 'pressure_data.csv'), 'w')
+float_file = open(os.path.join('.', 'float_data.csv'), 'w')
 
 start_time = 0
 
@@ -26,33 +25,12 @@ def main():
     for comport in list_ports.comports():
         if comport.description.find("Arduino Uno") != -1:
             device_port = comport.name
-    
     ser = Serial(port=device_port, baudrate=9600)
-    try:
-        ser.open()
-    except SerialException as e:
-        print(f"Failed to open port {device_port}: {e}")
-
-    try:
-        ultrasonic_file = open(os.path.join('.', 'ultrasonic_data.csv'), 'w')
-    except OSError as e:
-        print(e)
-        return
-    try:
-        pressure_file = open(os.path.join('.', 'pressure_data.csv'), 'w')
-    except OSError as e:
-        print(e)
-        return
-    try:
-        float_file = open(os.path.join('.', 'float_data.csv'), 'w')
-    except OSError as e:
-        print(e)
-        return
     
     start_time = time.time()
 
     while True:
-        result = bytes.decode(ser.readall())
+        result = bytes.decode(ser.read_until(b'\n'))
 
         ultrasonic_reading = {
             'time': time.time() - start_time,
@@ -69,12 +47,18 @@ def main():
             'data': float(result.split('F: ')[1]),
         }
 
+        print("Read: ____________________")
+        print(f"Ultrasonic: {ultrasonic_reading['data']} us")
+        print(f"Pressure  : {pressure_reading['data']} V")
+        print(f"Float     : {float_reading['data']} V")
+
         ultrasonic_data.append(ultrasonic_reading)
         pressure_data.append(pressure_reading)
         float_data.append(float_reading)
 
 
 def stop_collecting_data():
+    print("Saving data...")
     
     ultrasonic_csv_data = '\n'.join([f"{x['time']},{x['data']}" for x in ultrasonic_data])
     pressure_csv_data = '\n'.join([f"{x['time']},{x['data']}" for x in pressure_data])
@@ -93,5 +77,7 @@ def stop_collecting_data():
 
 if __name__ == '__main__':
 
-    signal.signal(signal.SIGINT, stop_collecting_data)
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        stop_collecting_data()

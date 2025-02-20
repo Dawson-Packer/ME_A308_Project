@@ -1,12 +1,13 @@
-#include "pressure.h"
+#include "float.h"
 
-void initializePressureSensor() {
+void initializeFloatSensor() {
 
     /* Sets V_ref to AVCC (5V for us) TODO: Look into using internal/external for better resolution */
     analogReference(DEFAULT);
+
 }
 
-float voltageOutPressureSensor() {
+float voltageOutFloatSensor() {
 
     int voltage_reading = analogRead(ADC_PIN);
     

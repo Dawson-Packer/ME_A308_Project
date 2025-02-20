@@ -19,6 +19,6 @@ long getUltrasonicOutput() {
 
     duration = pulseIn(ECHO_PIN, 1);
     
-    return duration / 29 / 2;
+    return duration;
 
 }

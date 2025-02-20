@@ -1,1 +1,1 @@
-arduino-cli upload -p  --fqbn arduino:avr:uno --verbose ./source/source.ino
+arduino-cli upload -p COM4 --fqbn arduino:avr:uno --verbose ./source/source.ino
