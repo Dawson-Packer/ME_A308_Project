@@ -1,8 +1,8 @@
 #ifndef PRESSURE_H
 #define PRESSURE_H
 #include <Arduino.h>
+#include "pinout.h"
 
-#define ADC_PIN A0
 #define ADC_RESOLUTION 1024
 #define V_REF 5 /* Reference voltage is 5V */
 

@@ -3,3 +3,4 @@ venv
 build
 .cache
 .vscode
+.fleet

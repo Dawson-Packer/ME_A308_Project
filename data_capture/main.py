@@ -51,6 +51,7 @@ def main():
         print(f"Ultrasonic: {ultrasonic_reading['data']} us")
         print(f"Pressure  : {pressure_reading['data']} V")
         print(f"Float     : {float_reading['data']} V")
+        print("")
 
         ultrasonic_data.append(ultrasonic_reading)
         pressure_data.append(pressure_reading)

@@ -3,30 +3,37 @@
 #include "ultrasonic.h"
 #include "pressure.h"
 #include "float.h"
+#include "valve.h"
+
+static bool is_filling = false;
 
 void setup() {
-
-    /* Enables the led pin as an output and turns it on */
-    pinMode(LED_BUILTIN, OUTPUT);
-    digitalWrite(LED_BUILTIN, 1);
 
     /* Initializes the Serial connection */
     Serial.begin(9600);
 
     /* Initialize sensors */
     initializeUltrasonic();
-    
+
+    /* Initialize valve motor */
+    initializeValveMotor();
+
 }
 
-void loop() {
+void loop() { 
+
+    long current_time = millis();
 
     long ultrasonic_microseconds = getUltrasonicOutput();
 
     float pressure_voltage = voltageOutPressureSensor();
 
     float float_voltage = voltageOutFloatSensor();
-    
-    Serial.print("US: ");
+
+    Serial.print("T: ");
+    Serial.print(current_time);
+
+    Serial.print(" US: ");
     Serial.print(ultrasonic_microseconds);
 
     Serial.print(" P: ");
@@ -36,5 +43,4 @@ void loop() {
     Serial.print(float_voltage);
 
     Serial.print('\n');
-
 }

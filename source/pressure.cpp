@@ -8,7 +8,7 @@ void initializePressureSensor() {
 
 float voltageOutPressureSensor() {
 
-    int voltage_reading = analogRead(ADC_PIN);
-    
-    return ((float)V_REF / ADC_RESOLUTION) * (float)voltage_reading;
+    int adc_output = analogRead(P_ADC_PIN);
+
+    return ((float)V_REF / ADC_RESOLUTION) * (float)adc_output;
 }
