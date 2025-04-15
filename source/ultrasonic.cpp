@@ -7,7 +7,7 @@ void initializeUltrasonic() {
 
 }
 
-long getUltrasonicOutput() {
+long microsecondsUltrasonic() {
 
     long duration;
 

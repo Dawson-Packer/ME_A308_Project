@@ -6,9 +6,9 @@ void initializePressureSensor() {
     analogReference(DEFAULT);
 }
 
-float voltageOutPressureSensor() {
+double voltageOutPressureSensor() {
 
     int adc_output = analogRead(P_ADC_PIN);
 
-    return ((float)V_REF / ADC_RESOLUTION) * (float)adc_output;
+    return ((double)V_REF / (double)ADC_RESOLUTION) * (double)adc_output;
 }

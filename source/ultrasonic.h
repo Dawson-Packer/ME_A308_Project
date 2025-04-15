@@ -9,6 +9,6 @@ void initializeUltrasonic();
 
 /// @brief Returns the distance seen by the ultrasonic sensor in centimeters.
 /// @return The microseconds to the target and back.
-long getUltrasonicOutput();
+long microsecondsUltrasonic();
 
 #endif

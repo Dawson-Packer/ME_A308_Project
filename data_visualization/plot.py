@@ -26,13 +26,13 @@ class Plot(FigureCanvasTkAgg):
     def update_with_data(self, time: list[float], pressure: list[float], float: list[float], ultrasonic: list[float]):
         self.subplot.clear()
 
-        self.subplot.plot(time, pressure, label="Pressure Sensor Voltage (V)", linestyle='-')
-        self.subplot.plot(time, float, label="Float Potentiometer Voltage (V)", linestyle='-')
-        self.subplot.plot(time, ultrasonic, label="Ultrasonic Time (s)", linestyle='-')
+        self.subplot.plot(time, pressure, label="Pressure Sensor Height (in)", linestyle='-')
+        self.subplot.plot(time, float, label="Float Potentiometer Height (in)", linestyle='-')
+        self.subplot.plot(time, ultrasonic, label="Ultrasonic Height (in)", linestyle='-')
 
         plt.legend()
         plt.xlabel("Time (s)")
-        plt.ylabel("Tank Height (mm — CHANGE)")
+        plt.ylabel("Tank Height (in)")
 
         self.draw()
         self.get_tk_widget().grid(row=0, column=0, sticky=tk.NSEW)

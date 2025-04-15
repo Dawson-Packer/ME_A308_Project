@@ -17,6 +17,6 @@ void initializePressureSensor();
 ///        where `V_out = (V_ref / 1024) * ADC_value`
 ///        For a 5V reference (ours), the resolution is 0.00488 V.
 /// @return The voltage out in Volts.
-float voltageOutPressureSensor();
+double voltageOutPressureSensor();
 
 #endif

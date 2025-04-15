@@ -20,16 +20,14 @@ void setup() {
 
 }
 
-void loop() { 
 
-    long current_time = millis();
+void loop() {
 
-    long ultrasonic_microseconds = getUltrasonicOutput();
-
-    float pressure_voltage = voltageOutPressureSensor();
-
+    long ultrasonic_microseconds = microsecondsUltrasonic();
+    double pressure_voltage = voltageOutPressureSensor();
     float float_voltage = voltageOutFloatSensor();
-
+    long current_time = millis();
+    
     Serial.print("T: ");
     Serial.print(current_time);
 
@@ -37,10 +35,10 @@ void loop() {
     Serial.print(ultrasonic_microseconds);
 
     Serial.print(" P: ");
-    Serial.print(pressure_voltage);
+    Serial.print(pressure_voltage, 5);
 
     Serial.print(" F: ");
-    Serial.print(float_voltage);
+    Serial.print(float_voltage, 5);
 
     Serial.print('\n');
 }

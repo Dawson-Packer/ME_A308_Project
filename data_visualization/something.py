@@ -57,11 +57,14 @@ class TankLevelRegulatorGui:
         self._float_data = []
         self._pressure_data = []
         self._ultrasonic_data = []
+        self._float_angle = []
 
         self._time_lifetime = []
         self._float_data_lifetime = []
         self._pressure_data_lifetime = []
         self._ultrasonic_data_lifetime = []
+        self._float_angle_lifetime = []
+
 
 
         self._float_3_readings = []
@@ -79,6 +82,8 @@ class TankLevelRegulatorGui:
         self._float_data_lifetime = []
         self._pressure_data_lifetime = []
         self._ultrasonic_data_lifetime = []
+        self._float_angle = []
+        self._float_angle_lifetime = []
 
 
     def toggle_lifetime(self):
@@ -123,18 +128,16 @@ class TankLevelRegulatorGui:
 
         while self._is_running:
             start_time = time.time()
-            try:
-                if self.show_lifetime:
-                    self.plot.update_with_data(
-                        self._time_lifetime, self._pressure_data_lifetime,
-                        self._float_data_lifetime, self._ultrasonic_data_lifetime
-                    )
-                else:
-                    self.plot.update_with_data(
-                        self._time, self._pressure_data, self._float_data,
-                        self._ultrasonic_data)
-            except RuntimeError as e:
-                pass
+            if self.show_lifetime:
+                self.plot.update_with_data(
+                    self._time_lifetime, self._pressure_data_lifetime,
+                    self._float_data_lifetime, self._ultrasonic_data_lifetime, self._float_angle_lifetime
+                )
+            else:
+                self.plot.update_with_data(
+                    self._time, self._pressure_data, self._float_data,
+                    self._ultrasonic_data, self._float_angle)
+        
             while time.time() - start_time < UPDATE_PERIOD: pass
 
     @property
@@ -160,7 +163,8 @@ class TankLevelRegulatorGui:
         Params
          pressure: float :: Pressure in Volts.
          float: float :: Potentiometer reading in Volts.
-         ultrasonic: float :: 
+         ultrasonic: float :: Time to reflect in microseconds.
+        
         """
 
 #——Pressure Transducer——————————————————————————————————————————————————————————————————————————————
@@ -172,14 +176,24 @@ class TankLevelRegulatorGui:
 
 #——Potentiometer————————————————————————————————————————————————————————————————————————————————————
 
-        H = 3.25 # in
+        H = 3.75 # in
         L = 3.5 # in
-        POS_MIN_VOLTAGE = 0.03906 # V
-        MULTIPLIER = -45 / -3.7287273
-        theta = MULTIPLIER * 360*(float_voltage - POS_MIN_VOLTAGE) / 3.3 # degrees
-        theta = 0.0 if theta < 0.0 else theta
-        # f_height = theta
-        f_height = H - (L*math.sin(math.radians(theta)) + 0.84375) # in
+        R = 0.8125 # in
+        H_W = 0.5 # in
+
+        V_0 = 0.04395 # V
+        V_1 = 0.10742 # V
+
+        # voltage_percent = (float_voltage - V_0) / (V_1 - V_0)
+        # if voltage_percent < 0: voltage_percent = 0.0
+
+        theta_0 = 20 # degrees
+        theta_1 = None # degrees
+
+        theta = 35*float_voltage / 3.3 # degrees
+        theta -= theta_0
+
+        f_height = H - (L*math.sin(math.radians(theta)) + R) # in
 
 #——Ultrasonic———————————————————————————————————————————————————————————————————————————————————————
 
@@ -196,6 +210,8 @@ class TankLevelRegulatorGui:
         self._pressure_data_lifetime.append(p_height)
         self._float_data_lifetime.append(f_height)
         self._ultrasonic_data_lifetime.append(us_height)
+        self._float_angle.append(360*float_voltage)
+        self._float_angle_lifetime.append(360*float_voltage)
 
         self._time = self._time[-20:]
         self._float_data = self._float_data[-20:]
