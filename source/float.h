@@ -4,7 +4,7 @@
 #include "pinout.h"
 
 #define ADC_RESOLUTION 1024
-#define V_REF 5 /* Reference voltage is 5V */
+#define V_REF 3.3 /* Reference voltage is 5V */
 
 /// @brief Initializes the float potentiometer by selecting the reference voltage. By default, this
 ///        is set to AVCC (power supply, 5V in our case). It can be set to INTERNAL for 1.1V or
